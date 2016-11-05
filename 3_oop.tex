@@ -144,7 +144,7 @@ int main()
     \uncover<3->{\kw{private} & Only members of this class or members of friends\footnote{We'll see what these are later.} can access these. \\}
     \uncover<4->{\kw{protected} & Same as private but also allows members of classes derived from this one \footnotemark[\value{footnote}] to access these.}
   \end{tabularx}
-  \uncover<5->{By default classes have \kw{private} access to all members.}
+  \uncover<5->{By default classes should have \kw{private} access to all members.}
 \end{frame}
 
 \subsection{Encapsulation}
@@ -259,12 +259,12 @@ private:
       \begin{lstlisting}[aboveskip=0pt,belowskip=0pt]
 int main()
 {
-  Vector2 r1(3, 14);
+  Vector2 r1(3., 10.4);
   r1.printCoords();
   return 0;
 }
       \end{lstlisting}
-      \cout{3 10}
+      \cout{3 10.4}
     \end{column}
   \end{columns}  
 	
@@ -315,7 +315,7 @@ private:
       \begin{lstlisting}[aboveskip=0pt,belowskip=0pt]
 int main()
 {
-  Vector2 r1(3, 14);
+  Vector2 r1(3., 10.4);
   Vector2 r2; // No brackets!
   std::cout << "r1: "
   r1.printCoords();
@@ -324,7 +324,7 @@ int main()
   return 0;
 }
       \end{lstlisting}
-      \cout{r1: 3 10\newline
+      \cout{r1: 3 10.4\newline
       r2: 0 0}
     \end{column}
   \end{columns}  
