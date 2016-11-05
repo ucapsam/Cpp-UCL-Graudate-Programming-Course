@@ -337,7 +337,7 @@ int main()
 \begin{frame}[fragile]
   \frametitle{Destructors}
   
-	A class may want release resources like dynamic memory when it is destructed, this is done in the destructor.
+	A class may want to release resources like dynamic memory when it is destructed, this is done in the destructor.
   \defiblock{destructor}{A special member function that has the same name as the class but prefixed with a \string~{}(tilde), takes no parameters and has no return type.}
   \pause
   An example:
@@ -475,6 +475,7 @@ public:
     \pause
     \item{Finally the returned \texttt{Vector2} is copied into our \texttt{r12}.}
   \end{enumerate}
+  \warnblock{This may seem \emph{cool} but it should be used sparingly. Use only when the effect of the operator is very clear, otherwise using seemly normal operators will lead to unexpected results.}
 
 \end{frame}
 
