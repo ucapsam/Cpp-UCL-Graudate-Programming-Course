@@ -126,12 +126,19 @@ unsigned int lotteryNumbers[] = {16, 3, 28, 9, 24, 10, 8}
 
 \end{frame}
 
-\begin{frame}
-	\frametitle{std array and std vector}
-	\framesubtitle{Like c-style arrays but much easier to use}
+\begin{frame}[fragile]
+	\frametitle{std::array}
+	\framesubtitle{Like c-style arrays but safer and easier to use}
 	\begin{lstlisting}
-	std::array<double,5> myArray={2.3, 4.2, 7.5, 8.2, 9.1};
-	std::vector<double> myVector; //Expandable zero size at first
+std::array<double,5> myArray={2.3, 4.2, 7.5, 8.2, 9.1};
+	\end{lstlisting}
+	These arrays are just as fast, have built in protection and are easier to manipulate. They protect against code such as this:
+	\begin{lstlisting}
+double SingleValue = myArray[8];
+	\end{lstlisting}
+	To use them the following header file must be included
+	\begin{lstlisting}
+#include<array>
 	\end{lstlisting}
 \end{frame}
 
