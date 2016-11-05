@@ -350,6 +350,25 @@ bool * spinChain = new bool[spinChainLength]; // Good
   \end{doblocke}
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{std::vector}
+	\framesubtitle{Dynamic arrays made easy, all the memory allocation with new[] and delete[] is done for you.}
+	\begin{lstlisting}
+	std::vector<double> myVector;
+	\end{lstlisting}
+	Elements can easily be added on the fly using push\_back().
+	\begin{lstlisting}
+	myVector.push_back(2.3);
+	myVector.push_back(3.3);
+	myVector.push_back(5.6);
+	\end{lstlisting}
+	The elements can be accessed as normal with [] or myVector.at() if you want to use a more modern syntax.\\[5mm]
+	In order to use vectors you must include the following header.
+	\begin{lstlisting}
+	#include<vector>
+	\end{lstlisting}
+\end{frame}
+
 \subsection{References}
 
 \begin{frame}[fragile]
