@@ -28,7 +28,7 @@
   	title=\lstsrctitle]%
   	{../code/4_io/lectures/simple_output.cpp}
 
-  Doesn't look like much does it?  That's because I've had to use escape characters to print some of the symbols:
+  \pause Doesn't look like much does it?  That's because I've had to use escape characters to print some of the symbols:
   	\texttt{\textbackslash} is \texttt{\textbackslash\textbackslash} and
   	\texttt{"}  is \texttt{\textbackslash"} \footnote{For full list see \url{http://en.cppreference.com/w/cpp/language/escape}}
 
@@ -85,7 +85,7 @@
   \pause
   \begin{doblocke}
     \begin{itemize}
-      \item{Close files as soon as you're done with them!  If you open a file in a class, make sure the destructor closes it.}
+      \item{Close files as soon as you're done with them!  If you open a file in a class, make sure the destructor closes it. Although if you forget the fstream destructor should do it for you.}
       \pause
       \item{Check if the file is open before trying to close it:
       \begin{lstlisting}
