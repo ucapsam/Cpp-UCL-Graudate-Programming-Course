@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Conditionals}{3}{0}{1}
+\beamer@sectionintoc {2}{Loops}{9}{0}{2}
+\beamer@subsectionintoc {2}{1}{while loops}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{do-while loops}{11}{0}{2}
+\beamer@subsectionintoc {2}{3}{for loops}{12}{0}{2}
+\beamer@sectionintoc {3}{Functions}{18}{0}{3}
+\beamer@subsectionintoc {3}{1}{Declaring functions}{31}{0}{3}
+\beamer@subsectionintoc {3}{2}{Default values}{34}{0}{3}
+\beamer@subsectionintoc {3}{3}{Overloading functions}{39}{0}{3}
+\beamer@subsectionintoc {3}{4}{Recursive functions}{45}{0}{3}
