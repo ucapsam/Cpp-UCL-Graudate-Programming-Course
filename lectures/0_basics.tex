@@ -447,7 +447,6 @@ anotherDouble = 20./7.; // = 2.85714
   a = (21 + 7) % 2; // or this.
 	  \end{lstlisting}
 	  In fact the first version is correct.
-	  \pause
 	  
   	\end{column}
  	\end{columns}
@@ -492,9 +491,9 @@ anotherDouble = 20./7.; // = 2.85714
 			because \texttt{=} is right to left associative. 
 			\pause  While:
 	    \begin{lstlisting}
-	a * b / c;
+	a * b % c;
 	//evaluates as
-	(a * b) / c;
+	(a * b) % c;
 	    \end{lstlisting}
 	 are left to right associative. 
 	    
