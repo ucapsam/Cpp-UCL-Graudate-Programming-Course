@@ -1,0 +1,9 @@
+\frametitle{Recursivity}
+  \defiblock{recursive function}{a function that calls itself.}
+  This is similar to a recurrence relation in mathematics e.g.:
+  \begin{equation*}
+  b_n = n b_{(n - 1)}, b_0 = 1
+  \end{equation*}
+  which gives the factorial of a number ($n!$).\pause{}  And in C++:
+  \lstinputlisting[language=C++,title=\lstsrctitle,firstline=3,lastline=9]{../code/1_control_structure/lectures/factorial.cpp}
+

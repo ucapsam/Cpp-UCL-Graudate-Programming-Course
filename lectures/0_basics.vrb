@@ -1,0 +1,3 @@
+\frametitle{Complete example}
+  \framesubtitle{Putting it all together}
+  \lstinputlisting[language=C++,title=\lstsrctitle]{../code/0_basics/lectures/rect_info.cpp}

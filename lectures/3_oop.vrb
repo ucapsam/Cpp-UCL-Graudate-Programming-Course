@@ -1,0 +1,15 @@
+\frametitle{Operator overloading}
+
+  So how does this work?  We haven't called a method!  Let's breakdown the statement: \texttt{Vector r12 = r2 - r1;}\pause
+  \begin{enumerate}
+    \item{The compiler sees you've used the - operator on an object that has a \texttt{operator -} method and interprets this as if you had written the, also valid, statement:
+    \begin{lstlisting}
+  r2.operator -(r1);
+    \end{lstlisting}}
+    \pause
+    \item{Now it's more obvious: \texttt{r2}'s \texttt{operator -} method is invoked with \texttt{r1} as a parameter.}
+    \pause
+    \item{Finally the returned \texttt{Vector2} is copied into our \texttt{r12}.}
+  \end{enumerate}
+  \warnblock{This may seem \emph{cool} but it should be used sparingly. Use only when the effect of the operator is very clear, otherwise using seemly normal operators will lead to unexpected results.}
+

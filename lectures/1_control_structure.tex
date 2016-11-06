@@ -1,0 +1,427 @@
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+
+% Input all common stuff
+\input{common_predoc}
+
+\subtitle{Session 1: Control structure}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+\section{Conditionals}
+
+\begin{frame}[fragile]
+	\frametitle{if, else}
+	So far our programs have been linear: one start, one end, one path in between.  Let's branch out:
+	\pause
+	\begin{lstlisting}
+if(speed == 88){std::cout << "Great Scott!";}
+	\end{lstlisting}
+	the statement after the \texttt{if} condition will only be executed if the condition is true.\pause  You can execute more than one statment within a \texttt{\{ \}} block:
+	\begin{lstlisting}
+if(power >= 1.21)
+{
+  std::cout << "1.21 gigawatts!";
+  std::cout << "1.21 gigawatts. Great Scott!\n";
+}
+	\end{lstlisting} 
+	\pause
+	We can also specify what to do if the condition is not fulfilled:
+	\begin{lstlisting}
+bool haveEnoughPower;
+if(power >= 1.21){
+  haveEnoughPower = true;
+}else{
+  haveEnoughPower = false;
+}
+	\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{if, else}
+  Lastly we can string together a series of conditionals, like so:
+	\begin{lstlisting}
+int width, height;
+std::cin >> width >> height;
+	
+if(width > height){
+  std::cout << "Fat rectangle\n";
+}else if(height > width){
+  std::cout << "Tall rectangle\n";
+}else if(width == height){
+  std::cout << "Square\n";
+}else{
+  std::cout << "IMPOSSIBLE!!";
+}
+	\end{lstlisting}
+	These are evaluated one after another until one is found to be true, otherwise the final \kw{else} statement is executed.
+	\pause
+	\doblock{Keep conditionals simple, break them up if you have to.  A huge proportion of programming errors come from conditional statements.}
+\end{frame}
+
+\section{Loops}
+
+\subsection{while loops}
+
+\begin{frame}[fragile]
+  \frametitle{Loops}
+  The purpose of a loop is to execute a set of statements until a condition is fulfilled.
+  \pause
+  \begin{block}{while loop}
+    \begin{lstlisting}
+while(expression) statement
+    \end{lstlisting}
+    Example:
+  \begin{lstlisting}
+  int t = 10;
+  while(t != 0)
+  {
+    std::cout << t << ", ";
+    --t;  
+  }
+  std::cout << "Blastoff!";
+  \end{lstlisting}
+  \end{block}
+\end{frame}
+
+\subsection{do-while loops}
+
+\begin{frame}[fragile]
+  \frametitle{Loops}
+  \framesubtitle{Go on, go on, go on, go on, go on...}
+  
+  \begin{block}{do-while loop}
+    \begin{lstlisting}
+do statement while(expression);
+    \end{lstlisting}
+    \lstinputlisting[language=C++,title=\lstsrctitle,belowskip=0pt]%
+    {../code/1_control_structure/lectures/tea_father.cpp}
+  \end{block}
+\end{frame}
+
+\subsection{for loops}
+
+\begin{frame}[fragile]
+  \frametitle{Loops}
+  
+  \begin{block}{for loop}
+    \begin{lstlisting}
+  for(initialisation; condition; increment) statement;
+    \end{lstlisting}
+    This works as follows:
+    \begin{enumerate}
+      \item<2->{\texttt{initialisation} is executed.  Usually used to initialise a counter.  This happens once.}
+      \item<3->{\texttt{condition} is checked, if true the loop continues, otherwise the loop ends and is skipped.}
+      \item<4->{\texttt{statement} is executed.}
+      \item<5->{\texttt{increment} is executed and we go back to step 2.}
+    \end{enumerate}
+    \pause[6]
+    Here's our blastoff example with a for loop:
+    \begin{lstlisting}[belowskip=0pt]
+  for(int t = 10; t != 0; --t)
+  {
+    std::cout << t << ", ";
+  }
+  std::cout << "Blastoff!";
+    \end{lstlisting}
+    
+  \end{block}
+\end{frame}
+
+\section{Functions}
+
+\begin{frame}[fragile]
+  \frametitle{Functions}
+  \framesubtitle{How would we function without them?}
+  Functions provide a way of structuring a program in a more modular way, by grouping sets of statement so they can be easily reused.\newline
+  \pause
+  Consider: what if we want to calculate gravitational force between multiple bodies?
+  \begin{lstlisting}
+forceEarthSun = G * massEarth * massSun /
+  (rEarthSun * rEarthSun);
+forceEarthMoon = G * massEarth * massMoon /
+  (rEarthMoon * rEarthMoon);
+forceEarthMars = G * massEarth * massMars /
+  (rEarthMars * rEarthMars);
+  \end{lstlisting}
+  \pause
+  wouldn't it be better to be able to write:
+  \begin{lstlisting}
+forceEarthSun = force(massEarth,  massSun, rEarthSun);
+forceEarthMoon = force(massEarth, massMoon, rEarthMoon);
+forceEarthMars = force(massEarth, massMars, rEarthMars);
+  \end{lstlisting}
+  Through the magic of functions, we can!
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Functions}
+
+  Format of a function:
+  \begin{lstlisting}
+type name(parameter1, parameter2, ...) { statements }  
+  \end{lstlisting}
+  where:
+  \begin{itemize}
+    \item<2->{\texttt{type} is the data type that is returned to you by the function.}
+    \item<3->{\texttt{name} is the unique identifier (name) of the function.}
+    \item<4->{\texttt{parameter}, each of these is just like a variable definition (e.g. \texttt{\kw{double} mass}).}
+    \item<5->{\texttt{statements} are the function's \textit{body}.  These statements will execute when the function is called.}
+  \end{itemize}
+  \pause[6]
+  Let's try:
+  \begin{lstlisting}
+double force(const double mass1, const double mass2,
+  const double r)
+{
+  return G * mass1 * mass2 / (r * r);
+}
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Functions}
+
+  Let's try a full example:
+  \lstinputlisting[language=C++,basicstyle=\ttfamily\fontsize{7}{8}\selectfont,title=\lstsrctitle]{../code/1_control_structure/lectures/grav_force.cpp}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Function nomenclature}
+  
+  \defiblock{caller}{A point in code that \textit{calls} a function.  A value is said to be \text{returned} to the caller when the function finishes.}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Functions with no type}
+  
+  What if we want to have a function that doesn't return anything?\newline
+  \pause
+  Use \kw{void}:
+  \begin{lstlisting}
+void printForce(const std::string object1,
+  const std::string object2,
+  const double force)
+{
+  std::cout << object1 << " " << object2 << ":" << force << "\n";
+}
+  \end{lstlisting}
+  In C++ \kw{void} denotes the absence of a type.
+\end{frame}
+
+\subsection{Declaring functions}
+
+\begin{frame}[fragile]
+  \frametitle{Declaring functions}
+  \framesubtitle{I do declare}
+  
+  All identifiers have to be declared before they are used.  So how are we to code something like:
+  \begin{lstlisting}
+const bool ON = true, OFF = false
+const bool OPEN = true, CLOSED = false;
+
+void setMicrowaveState(const bool newState) {
+  if(newState == ON)
+  {
+    setMicrowaveDoor(CLOSED); // <- ERROR: Don't know about 
+    state = ON;               // setMicrowaveDoor 
+  }
+  else
+  	state = OFF;
+}
+void setMicrowaveDoor(const bool newState) {
+  if(newState == OPEN)
+    setMicrowaveState(OFF);
+
+  doorState = newState;
+}
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Declaring functions}
+  \framesubtitle{I do declare}
+  
+  To get around this declare the \texttt{setMicrowaveDoor} function before \texttt{setMicrowaveState} like this:
+  \begin{lstlisting}
+void setMicrowaveDoor(const bool newState);
+
+void setMicrowaveState(const bool newState) {
+  if(newState == ON)
+  {
+    setMicrowaveDoor(CLOSED); // Happy: you've told me about
+    state = ON;               // setMicrowaveDoor
+  }
+  ...
+}
+void setMicrowaveDoor(const bool newState) { /*as before*/ }
+  \end{lstlisting}
+  The first line tells the compiler: expect to see a \texttt{setMicrowaveDoor} function somewhere further down, and this is what it will look like.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaring functions}
+  \begin{defiblocke}{function prototype}%
+The header of a function without any of the body. Used in function declarations, e.g.:
+    \begin{lstlisting}
+void setMicrowaveDoor(const bool newState);
+    \end{lstlisting}
+  \end{defiblocke}
+\end{frame}
+
+\subsection{Default values}
+
+\begin{frame}[fragile]
+  \frametitle{Default values}
+  \defiblock{default value}{A value that is used as a function parameter if the caller doesn't supply one.}
+	An example:
+	
+  \begin{columns}[t]
+    \begin{column}[T]{0.48\textwidth}
+    \lstinputlisting[language=C++,title=\lstsrctitle,linerange={3-13},basicstyle=\ttfamily\fontsize{8}{9}\selectfont]{../code/1_control_structure/lectures/dispense_drink.cpp}  
+    \end{column}
+    \begin{column}[T]{0.48\textwidth}
+\lstinputlisting[language=C++,firstline=15,basicstyle=\ttfamily\fontsize{8}{9}\selectfont]{../code/1_control_structure/lectures/dispense_drink.cpp}  
+	  \end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Default values}
+  
+  Default values have to be at the end of the parameter list, e.g.:
+  \begin{lstlisting}
+void dispenseDrink(int size,
+  int drinkType = COFFEE,
+  bool withMilk = false) { ... } // Good, can call:
+  
+dispenseDrink(1);      // or ...
+dispenseDrink(3, TEA); // or ...
+dispenseDrink(2, COFFEE, true)
+  \end{lstlisting}
+  \pause
+  Bad:
+  \begin{lstlisting}
+void dispenseDrink(int drinkType = COFFEE,
+  int size,
+  bool withMilk = false) { ... }
+  
+dispenseDrink(/*what goes here?*/, 2); // Error!
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Default values}
+  
+  \begin{doblocke}
+    \begin{doitemize}
+      \item{Use default values to automate commonly used parameter values or provide the user with optional parameters.}
+      \pause
+      \item{To give an indication of what a reasonable parameter value might be.}
+    \end{doitemize}
+  \end{doblocke}
+\end{frame}
+
+\subsection{Overloading functions}
+
+\begin{frame}[fragile]
+  \frametitle{Overloading functions}
+  
+  What if you want to create a dot product function that works for both integers and doubles?  Could write:
+  \begin{lstlisting}
+int dotInt(int x0, int y0, int x1, int y1)
+{ return x0 * x1 + y0 * y1; }
+double dotDouble(double x0, double y0, double x1, double y1)
+{ return x0 * x1 + y0 * y1; }
+
+dotInt(fromX, fromY, toX, toY);
+  \end{lstlisting}
+  Have to look up which dot function to call based on my number type. Ideally I'd like to call \texttt{dot} and let the compiler choose the right one.
+  \newline\pause
+  No problem, use:
+  \begin{lstlisting}[belowskip=0pt]
+int dot(int x0, int y0, int x1, int y1)
+{ return x0 * x1 + y0 * y1; }
+double dot(double x0, double y0, double x1, double y1)
+{ return x0 * x1 + y0 * y1; }
+
+dot(fromX, fromY, toX, toY); // Compiler will choose
+                             // correct version based on
+                             // from/to number types
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Overloading functions}
+  
+  \defiblock{overloaded functions}{two or more functions with the same name but different parameter types and/or numbers of parameters.}
+  \pause
+  Examples:
+  \begin{lstlisting}
+// Sum two or three integers
+int sum(int n1, int n2);
+int sum(int n1, int n2, int n3);
+
+// Add together any integer/double
+int add(int n1, int n2);
+double add(int n1, double n2);
+double add(double n1, int n2);
+double add(double n1, double n2);
+  \end{lstlisting}  
+
+\end{frame}
+
+\subtitle{Inbuilt math functions}
+
+\begin{frame}[fragile]
+  \frametitle{Math functions}
+  \framesubtitle{C numerics library}
+  
+  As scientists we're going to want to manipulate numbers.  Here are some commonly used functions that are available as part of the \texttt{cmath} header:
+  
+	  \begin{tabularx}{\linewidth}{XX}
+		  \texttt{abs} & absolute value \\
+		  \texttt{sin, cos, tan} & Warning: take angle in radians! \\
+		  \texttt{exp, log, log10} & raise $e$ to power, natural log and base 10 log \\
+		  \texttt{sqrt} & \\
+		  \texttt{pow(\kw{double} base, \kw{double} exp)} & raise \texttt{based} to power \texttt{exp} 
+	  \end{tabularx}
+  \newline
+  See \footnote{\url{http://www.cplusplus.com/reference/clibrary/cmath/}} for a full list.
+  \newline
+	\pause
+  To use the math functions include the cmath header by writing:
+  \begin{lstlisting}
+#include <cmath>
+  \end{lstlisting}
+  at the start of you program.
+\end{frame}
+
+\subsection{Recursive functions}
+
+\begin{frame}[fragile]
+  \frametitle{Recursivity}
+  \defiblock{recursive function}{a function that calls itself.}
+  This is similar to a recurrence relation in mathematics e.g.:
+  \begin{equation*}
+  b_n = n b_{(n - 1)}, b_0 = 1
+  \end{equation*}
+  which gives the factorial of a number ($n!$).\pause{}  And in C++:
+  \lstinputlisting[language=C++,title=\lstsrctitle,firstline=3,lastline=9]{../code/1_control_structure/lectures/factorial.cpp}  
+  
+\end{frame}
+
+\end{document}
