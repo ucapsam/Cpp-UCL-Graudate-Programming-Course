@@ -470,9 +470,12 @@ int main()
   \frametitle{Friend functions}
   \framesubtitle{Not for every day}
   
-  \warnblock{The use of \kw{friend}s can undermine encapsulation, after all you're giving away access to parts of your class that were designed to be kept internal.
-  \newline\pause
-  Sometimes friendship can be used effectively to keep dependent code separated if there is a good design reason.  For example the code to draw a rectangle may be very complicated and may fit more naturally in the graphics handling portion of the codebase.  This enhances encapsulation.
+  \warnblock{
+  	\begin{itemize}
+  	\item The use of \kw{friend}s can undermine encapsulation, after all you're giving away access to parts of your class that were designed to be kept internal.
+  \pause
+  \item Sometimes friendship can be used effectively to keep dependent code separated if there is a good design reason.  For example the code to draw a rectangle may be very complicated and may fit more naturally in the graphics handling portion of the codebase.  This enhances encapsulation.
+	\end{itemize}
   }
 
 \end{frame}
@@ -515,12 +518,16 @@ int main()
   
   The following transitivity and reciprocity rules apply to the \kw{friend} property:
   \begin{itemize}
-  	\item<2->{Friendship isn't reciprocated: Just because a friend can access my \kw{private}s doesn't mean I can access theirs.  They have to explicitly mark me as a \kw{friend}.}
-    \item<3->{Friendship isn't transitive: Friends of my friends can't access my \kw{private}s.}
-    \item<4->{Friendship isn't inherited:  My friends can't access my children's privates \kw{private}s.}
-    \item<5->{Friendship isn't automatic: I can't access my children's \kw{private}s.}
+  	\item{Friendship isn't reciprocated: Just because a friend can access a classes \kw{private} members doesn't mean the class can access the friend's.  It has to be explicitly marked as a \kw{friend}.}\pause
+  	\item{Friendship isn't transitive: Friends of a friend can't access a classes \kw{private} members.}\pause
+    \item{Friendship isn't inherited:  Friends can't access derived classes \kw{private} members.}
   \end{itemize}
+  \pause Also note classes aren't automatically friends of their derived classes.
 
 \end{frame}  
-
+\begin{frame}
+	\begin{center}
+		\Large{Thank You!}
+	\end{center}
+\end{frame}
 \end{document}
