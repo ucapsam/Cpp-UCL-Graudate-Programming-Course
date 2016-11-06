@@ -174,7 +174,6 @@ Format: \texttt{\textcolor{bluekeywords}{variable\_type} variable\_name, variabl
 
 \begin{frame}[fragile]
   \frametitle{Naming variables}
-  \framesubtitle{Much like naming children}
   \begin{doblocke}
     \begin{doitemize}
       \item{
@@ -243,7 +242,7 @@ Spot the difference:
 
 \begin{frame}[fragile]
   \frametitle{Scope}
-  \framesubtitle{Scope this out}
+  \framesubtitle{All variables have a finite life time. They are created and \emph{destroyed}!}
   
   \begin{columns}[t]
     \begin{column}[T]{0.52\textwidth}
@@ -276,7 +275,7 @@ Spot the difference:
  \frametitle{Simple operators}
  \begin{block}{Assignment: \texttt{=}}
     \begin{lstlisting}
-  a = 5; a = b; a = b = c; 
+  a = 5; a = b;
    \end{lstlisting}
   \end{block}
   \pause
@@ -301,15 +300,18 @@ Spot the difference:
   \frametitle{Integer arithmetic}
   
   \begin{warnblocke}
-  	In C++ integer arithmetic truncates (effectively rounds down):
+  	In C++ \emph{integer} arithmetic truncates (effectively rounds down):
   	\begin{lstlisting}
-  int dividend = 20, divisor = 7;
-  int someInteger = dividend / divisor; // = 2
+  int a = 20;
+  int b = 7;
+  int someInteger = a / b; // = 2
   	\end{lstlisting}
   	Storing the result in a double doesn't help as the arithmetic has already been done:
   	\begin{lstlisting}
-  double someDouble = dividend / divisor; // = 2
+  double someDouble = a / b; // = 2
+  double anotherDouble = 20/7; // = 2
   	\end{lstlisting}
+  \end{warnblocke}
   	What gives?\\
   	\pause{}  To get around we can ``cast'' the variable to another type:
   	\begin{enumerate}
@@ -318,9 +320,12 @@ Spot the difference:
 someDouble = static_cast<double>(dividend) /
   static_cast<double>(divisor); // = 2.85714
   	  	\end{lstlisting}}
+  	  \item{
+  	  	\begin{lstlisting}
+anotherDouble = 20./7.; // = 2.85714
+  	  	\end{lstlisting}}
   	  
   	\end{enumerate}
-  \end{warnblocke}
 
 \end{frame}
 
@@ -442,7 +447,6 @@ someDouble = static_cast<double>(dividend) /
   a = (21 + 7) % 2; // or this.
 	  \end{lstlisting}
 	  In fact the first version is correct.
-	  \pause
 	  
   	\end{column}
  	\end{columns}
@@ -487,9 +491,9 @@ someDouble = static_cast<double>(dividend) /
 			because \texttt{=} is right to left associative. 
 			\pause  While:
 	    \begin{lstlisting}
-	a * b / c;
+	a * b % c;
 	//evaluates as
-	(a * b) / c;
+	(a * b) % c;
 	    \end{lstlisting}
 	 are left to right associative. 
 	    

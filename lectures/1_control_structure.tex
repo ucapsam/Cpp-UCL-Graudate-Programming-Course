@@ -124,17 +124,18 @@ do statement while(expression);
       \item<4->{\texttt{statement} is executed.}
       \item<5->{\texttt{increment} is executed and we go back to step 2.}
     \end{enumerate}
+\end{block}
     \pause[6]
     Here's our blastoff example with a for loop:
     \begin{lstlisting}[belowskip=0pt]
-  for(int t = 10; t != 0; --t)
+  for(int t = 10; t <= 0; --t)
   {
     std::cout << t << ", ";
   }
   std::cout << "Blastoff!";
     \end{lstlisting}
     
-  \end{block}
+  
 \end{frame}
 
 \section{Functions}
