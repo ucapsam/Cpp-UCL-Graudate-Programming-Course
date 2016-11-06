@@ -1,0 +1,139 @@
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+
+% Input all common stuff
+\input{common_predoc}
+
+\usepackage{textcomp}
+
+\subtitle{Extra Session}
+
+\begin{document}
+	
+\frame{\titlepage}
+	
+\begin{frame}
+	\frametitle{Table of Contents}
+	\tableofcontents
+\end{frame}
+%%	
+\section{Debugging}
+%%	
+%%	
+%%	
+\begin{frame}[fragile]
+\frametitle{Debugging code}
+There is one rule when programming C++ that will prevent all bugs and errors from appearing.\\
+\pause
+Unfortunately no-one alive knows it.\\
+\pause The sad truth with all of programming is that you WILL spend more time finding and fixing bugs than actually programming \pause:(
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Debugging code}
+	An example
+	\pause
+	\begin{lstlisting}
+		
+#include <iostream>
+		
+		
+int main(){
+		
+	double mass[] = {0.25, 0.5, 3.08, 2.03};
+	double average_mass = 0.0;
+			
+	for(int i = 0; i <= 4; i++){
+		average_mass += mass[i]
+	}
+			
+	average_mass /=4.0;
+		
+	std::cout<<"The average mass is "<<average_mass;
+}
+		
+	\end{lstlisting}
+	\pause
+	Whats the result?
+	
+\end{frame}
+
+%Run the example here
+
+\begin{frame}[fragile]
+	\frametitle{Printing method}
+	How do we find the bug?\pause
+	
+	We can try the printing method.\pause
+	
+	This method is best suited for very simple problems and codes such as this one.
+	\pause
+	
+	It is simply done by inserting code that prints out values in a place you suspect is causing the issue.
+
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Printing method}
+\pause
+\begin{lstlisting}
+
+#include <iostream>
+
+
+int main(){
+
+	double mass[] = {0.25, 0.5, 3.08, 2.03};
+	double average_mass = 0.0;
+	
+	for(int i = 0; i <= 4; i++){
+		std::cout<<"i is:"<<i<<std::endl
+		std::cout<<"mass is:"<<mass[i]<<std::endl
+		average_mass += mass[i]
+	}
+
+	average_mass /=4.0;
+
+	std::cout<<"The average mass is "<<average_mass;
+}
+
+\end{lstlisting}
+
+\end{frame}
+
+%Run the code here
+
+\begin{frame}[fragile]
+	\frametitle{Printing method}
+	\pause
+	
+	The error comes from the variable \emph{i}. It counts too high. What is causing this?\pause
+	
+	\begin{lstlisting}
+	for(int i = 0; i <= 4; i++)
+	\end{lstlisting}
+	\pause
+	This should be instead:
+	\begin{lstlisting}
+	for(int i = 0; i < 4; i++)
+	\end{lstlisting}	
+	\pause
+	
+\end{frame}
+
+%Run the code here
+
+\begin{frame}[fragile]
+	\frametitle{GDB method}
+	\pause
+	
+	What if your code is extremely large or complicated that it is difficult to pinpoint the error?
+
+	
+	
+	
+\end{frame}
+
+
+\end{document}
