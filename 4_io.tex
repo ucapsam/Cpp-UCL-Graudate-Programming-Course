@@ -83,18 +83,19 @@
   Tells the operating system to close the file because we no longer need it.
   \end{block}
   \pause
-  \begin{doblocke}
+  \begin{warnblocke}
     \begin{itemize}
-      \item{Close files as soon as you're done with them!  If you open a file in a class, make sure the destructor closes it. Although if you forget the fstream destructor should do it for you.}
+      \item{You do not need to close files, the fstream destructor will do it for you when you leave the current scope.}
       \pause
-      \item{Check if the file is open before trying to close it:
+      \item{If you want to close a file manually check to see if the file is open before trying to close it:
       \begin{lstlisting}
-  if(myFile.is_open())
+  if(myFile.is_open()){
     myFile.close();
+  }
       \end{lstlisting}
-      Calling close on a file that is not open is an error.}
+      Calling close on a file that is not open is an error!}
     \end{itemize}
-  \end{doblocke}
+  \end{warnblocke}
   
 \end{frame}
 
